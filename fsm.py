@@ -8,6 +8,7 @@ thearter_name = ['','','','','','','','']
 origin_parse_addr = 'http://www.atmovies.com.tw/'
 current_parse_addr = ''
 current_movie_name = []
+current_movie_time = []
 
 class TocMachine(GraphMachine):
 	def __init__(self, **machine_configs):
@@ -71,10 +72,14 @@ class TocMachine(GraphMachine):
 		name_num = 0
 
 		for ul in soup.findAll('ul', id='theaterShowtimeTable'):
+			time_tmp = []
 			for a in ul.find_all('a', href=re.compile('^/movie/')):
 				tmp = tmp + str(name_num) + '. ' + a.text + '\n'
 				current_movie_name.append(a.text)
-				name_num = name_num + 1
+			for ul1 in ul.findAll('li', text=re.compile('\d{1,2}\S\S\d{1,2}')):
+				time_tmp.append(ul1.text)
+			current_movie_time.append(time_tmp)
+			name_num = name_num + 1
 		update.message.reply_text('現在選擇' + thearter_name[0] + tmp)
 
 	def on_exit_thearter_area1(self, update):
@@ -222,7 +227,12 @@ class TocMachine(GraphMachine):
 		update.message.reply_text(re_mess)
 		
 	def show_time_con(self, update):
-		if( (0 <= str(update.message.text)) and (len(current_movie_name) > str(update.message.text)) ):
+		if( (0 <= int(update.message.text)) and (len(current_movie_name) > int(update.message.text)) ):
 			return 1
 		else:
 			return 0
+
+	def on_enter_show_times(self, update):
+		nn = int(update.message.text)
+		for x in range(len(current_movie_time[nn])):
+			print(current_movie_time[nn][x])
