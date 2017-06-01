@@ -262,8 +262,10 @@ class TocMachine(GraphMachine):
 
 	def on_enter_show_times(self, update):
 		nn = int(update.message.text)
+		re_mess = '時間:\n'
 		for x in range(0,len(current_movie_time[nn])):
-			print(current_movie_time[nn][x])
+			re_mess = re_mess + current_movie_time[nn][x] + '\n'
+		update.message.reply_text(re_mess)
 	
 	def on_exit_show_times(self, update):
 		print("Leave show_times")
