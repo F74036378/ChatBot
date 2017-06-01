@@ -259,7 +259,7 @@ class TocMachine(GraphMachine):
 	def show_time_con(self, update):
 		if( (0 <= int(update.message.text)) and (len(current_movie_name) > int(update.message.text)) ):
 			current_movie = int(update.message.text)
-			print(str(current_movie))
+			print(str(current_movie) + ',' + current_movie_name[current_movie])
 			return 1
 		else:
 			return 0
