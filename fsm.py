@@ -84,7 +84,8 @@ class TocMachine(GraphMachine):
 		update.message.reply_text('現在選擇' + thearter_name[0] + tmp)
 
 	def on_exit_thearter_area1(self, update):
-		print('Leaving state1')
+		for x in range(0,len(current_movie_name)):
+			print(current_movie_name[x])
 
 	def on_enter_thearter_area2(self, update):
 		current_parse_addr = origin_parse_addr + thearter_num[1]
