@@ -63,7 +63,15 @@ class TocMachine(GraphMachine):
 
 	def on_enter_thearter_area1(self, update):
 		current_parse_addr = origin_parse_addr + thearter_num[0]
-		update.message.reply_text('現在選擇' + thearter_name[0])
+		r = requests.get(current_parse_addr)
+		content = r.content
+		soup = BeautifulSoup(content, 'html.parser')
+		tmp = '\n'
+
+		for ul in soup.findAll('ul', id='theaterShowtimeTable'):
+			for a in ul.find_all('a', href=re.compile('^/movie/')):
+				tmp = tmp + a.text + '\n'
+		update.message.reply_text('現在選擇' + thearter_name[0] + tmp)
 
 	def on_exit_thearter_area1(self, update):
 		print('Leaving state1')
@@ -85,42 +93,90 @@ class TocMachine(GraphMachine):
 
 	def on_enter_thearter_area3(self, update):
 		current_parse_addr = origin_parse_addr + thearter_num[2]
-		update.message.reply_text('現在選擇' + thearter_name[2])
+		r = requests.get(current_parse_addr)
+		content = r.content
+		soup = BeautifulSoup(content, 'html.parser')
+		tmp = '\n'
+
+		for ul in soup.findAll('ul', id='theaterShowtimeTable'):
+			for a in ul.find_all('a', href=re.compile('^/movie/')):
+				tmp = tmp + a.text + '\n'
+		update.message.reply_text('現在選擇' + thearter_name[2] + tmp)
 	
 	def on_exit_thearter_area3(self, update):
 		print('Leaving state3')
 	
 	def on_enter_thearter_area4(self, update):
 		current_parse_addr = origin_parse_addr + thearter_num[3]
-		update.message.reply_text('現在選擇' + thearter_name[3])
+		r = requests.get(current_parse_addr)
+		content = r.content
+		soup = BeautifulSoup(content, 'html.parser')
+		tmp = '\n'
+
+		for ul in soup.findAll('ul', id='theaterShowtimeTable'):
+			for a in ul.find_all('a', href=re.compile('^/movie/')):
+				tmp = tmp + a.text + '\n'
+		update.message.reply_text('現在選擇' + thearter_name[3] + tmp)
 
 	def on_exit_thearter_area4(self, update):
 		print('Leaving state4')
 	
 	def on_enter_thearter_area5(self, update):
 		current_parse_addr = origin_parse_addr + thearter_num[4]
-		update.message.reply_text('現在選擇' + thearter_name[4])
+		r = requests.get(current_parse_addr)
+		content = r.content
+		soup = BeautifulSoup(content, 'html.parser')
+		tmp = '\n'
+
+		for ul in soup.findAll('ul', id='theaterShowtimeTable'):
+			for a in ul.find_all('a', href=re.compile('^/movie/')):
+				tmp = tmp + a.text + '\n'
+		update.message.reply_text('現在選擇' + thearter_name[4] + tmp)
 
 	def on_exit_thearter_area5(self, update):
 		print('Leaving state5')
 		
 	def on_enter_thearter_area6(self, update):
 		current_parse_addr = origin_parse_addr + thearter_num[5]
-		update.message.reply_text('現在選擇' + thearter_name[5])
+		r = requests.get(current_parse_addr)
+		content = r.content
+		soup = BeautifulSoup(content, 'html.parser')
+		tmp = '\n'
+
+		for ul in soup.findAll('ul', id='theaterShowtimeTable'):
+			for a in ul.find_all('a', href=re.compile('^/movie/')):
+				tmp = tmp + a.text + '\n'
+		update.message.reply_text('現在選擇' + thearter_name[5] + tmp)
 
 	def on_exit_thearter_area6(self, update):
 		print('Leaving state6')
 		
 	def on_enter_thearter_area7(self, update):
 		current_parse_addr = origin_parse_addr + thearter_num[6]
-		update.message.reply_text('現在選擇' + thearter_name[6])
+		r = requests.get(current_parse_addr)
+		content = r.content
+		soup = BeautifulSoup(content, 'html.parser')
+		tmp = '\n'
+
+		for ul in soup.findAll('ul', id='theaterShowtimeTable'):
+			for a in ul.find_all('a', href=re.compile('^/movie/')):
+				tmp = tmp + a.text + '\n'
+		update.message.reply_text('現在選擇' + thearter_name[6] + tmp)
 
 	def on_exit_thearter_area7(self, update):
 		print('Leaving state7')
 		
 	def on_enter_thearter_area8(self, update):
 		current_parse_addr = origin_parse_addr + thearter_num[7]
-		update.message.reply_text('現在選擇' + thearter_name[7])
+		r = requests.get(current_parse_addr)
+		content = r.content
+		soup = BeautifulSoup(content, 'html.parser')
+		tmp = '\n'
+
+		for ul in soup.findAll('ul', id='theaterShowtimeTable'):
+			for a in ul.find_all('a', href=re.compile('^/movie/')):
+				tmp = tmp + a.text + '\n'
+		update.message.reply_text('現在選擇' + thearter_name[7] + tmp)
 
 	def on_exit_thearter_area8(self, update):
 		print('Leaving state8')
