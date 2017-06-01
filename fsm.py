@@ -279,5 +279,7 @@ class TocMachine(GraphMachine):
 		return text.lower() == 'look'
 		
 	def on_enter_pre_look(self, update):
+		for item in current_movie_name:
+			print(item)
 		update.message.reply_text('https://www.youtube.com/results?search_query=' + current_movie_name[current_movie] + '預告')
 		self.go_back(update)
