@@ -1,31 +1,139 @@
-from transitions.extensions import GraphMachine
+from transitions import Machine
+import requests
+from bs4 import BeautifulSoup
+import re
 
+thearter_num = ['','','','','','','','']
+thearter_name = ['','','','','','','','']
+origin_parse_addr = 'http://www.atmovies.com.tw/'
+current_parse_addr = ''
 
-class TocMachine(GraphMachine):
-    def __init__(self, **machine_configs):
-        self.machine = GraphMachine(
-            model = self,
-            **machine_configs
-        )
+class TocMachine():
+	def __init__(self, **machine_configs):
+		self.machine = Machine(
+			model = self,
+			**machine_configs
+		)
+		area_num = 1
+		r = requests.get('http://www.atmovies.com.tw/showtime/a06/')
+		content = r.content
+		soup = BeautifulSoup(content, 'html.parser')
+		
+		for opt in soup.findAll('option', value=re.compile(r'^/showtime/t0')):
+			thearter_num[area_num-1] = str(opt.get('value'))
+			thearter_name[area_num-1] = opt.text
+			area_num = area_num + 1
 
-    def is_going_to_state1(self, update):
-        text = update.message.text
-        return text.lower() == 'go to state1'
+	def show_thearter_areas(self, update):
+		text = update.message.text
+		return text.lower() == 'show'
+	
+	def is_going_to_thearter_area1(self, update):
+		text = update.message.text
+		return text.lower() == '1'
 
-    def is_going_to_state2(self, update):
-        text = update.message.text
-        return text.lower() == 'go to state2'
+	def is_going_to_thearter_area2(self, update):
+		text = update.message.text
+		return text.lower() == '2'
+	
+	
+	def is_going_to_thearter_area3(self, update):
+		text = update.message.text
+		return text.lower() == '3'
+	
+	def is_going_to_thearter_area4(self, update):
+		text = update.message.text
+		return text.lower() == '4'
+		
+	def is_going_to_thearter_area5(self, update):
+		text = update.message.text
+		return text.lower() == '5'
+		
+	def is_going_to_thearter_area6(self, update):
+		text = update.message.text
+		return text.lower() == '6'
+		
+	def is_going_to_thearter_area7(self, update):
+		text = update.message.text
+		return text.lower() == '7'
+		
+	def is_going_to_thearter_area8(self, update):
+		text = update.message.text
+		return text.lower() == '8'
 
-    def on_enter_state1(self, update):
-        update.message.reply_text("I'm entering state1")
-        self.go_back(update)
+	def on_enter_thearter_area1(self, update):
+		current_parse_addr = origin_parse_addr + thearter_num[0]
+		update.message.reply_text('現在選擇' + thearter_name[0])
 
-    def on_exit_state1(self, update):
-        print('Leaving state1')
+	def on_exit_thearter_area1(self, update):
+		print('Leaving state1')
 
-    def on_enter_state2(self, update):
-        update.message.reply_text("I'm entering state2")
-        self.go_back(update)
+	def on_enter_thearter_area2(self, update):
+		current_parse_addr = origin_parse_addr + thearter_num[1]
+		r = requests.get(current_parse_addr)
+		content = r.content
+		soup = BeautifulSoup(content, 'html.parser')
+		tmp = '\n'
 
-    def on_exit_state2(self, update):
-        print('Leaving state2')
+		for ul in soup.findAll('ul', id='theaterShowtimeTable'):
+			for a in ul.find_all('a', href=re.compile('^/movie/')):
+				tmp = tmp + a.text + '\n'
+		update.message.reply_text('現在選擇' + thearter_name[1] + tmp)
+
+	def on_exit_thearter_area2(self, update):
+		print('Leaving state2')
+
+	def on_enter_thearter_area3(self, update):
+		current_parse_addr = origin_parse_addr + thearter_num[2]
+		update.message.reply_text('現在選擇' + thearter_name[2])
+	
+	def on_exit_thearter_area3(self, update):
+		print('Leaving state3')
+	
+	def on_enter_thearter_area4(self, update):
+		current_parse_addr = origin_parse_addr + thearter_num[3]
+		update.message.reply_text('現在選擇' + thearter_name[3])
+
+	def on_exit_thearter_area4(self, update):
+		print('Leaving state4')
+	
+	def on_enter_thearter_area5(self, update):
+		current_parse_addr = origin_parse_addr + thearter_num[4]
+		update.message.reply_text('現在選擇' + thearter_name[4])
+
+	def on_exit_thearter_area5(self, update):
+		print('Leaving state5')
+		
+	def on_enter_thearter_area6(self, update):
+		current_parse_addr = origin_parse_addr + thearter_num[5]
+		update.message.reply_text('現在選擇' + thearter_name[5])
+
+	def on_exit_thearter_area6(self, update):
+		print('Leaving state6')
+		
+	def on_enter_thearter_area7(self, update):
+		current_parse_addr = origin_parse_addr + thearter_num[6]
+		update.message.reply_text('現在選擇' + thearter_name[6])
+
+	def on_exit_thearter_area7(self, update):
+		print('Leaving state7')
+		
+	def on_enter_thearter_area8(self, update):
+		current_parse_addr = origin_parse_addr + thearter_num[7]
+		update.message.reply_text('現在選擇' + thearter_name[7])
+
+	def on_exit_thearter_area8(self, update):
+		print('Leaving state8')
+		
+	def on_enter_areas(self, update):
+		self.go_back(update)
+
+	def is_go_back_to_user(self, update):
+		text = update.message.text
+		return text.lower() == 'back'
+
+	def on_enter_user(self, update):
+		re_mess = '選擇戲院:\n'
+		for x in range(0,7):
+			re_mess = re_mess + str(x+1) + '. ' + thearter_name[x] + '\n'
+		update.message.reply_text(re_mess)
