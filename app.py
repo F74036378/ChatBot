@@ -24,6 +24,7 @@ machine = TocMachine(
 		'thearter_area7',
 		'thearter_area8',
 		'show_times',
+		'pre_look',
 		'areas'
     ],
     transitions=[
@@ -114,9 +115,16 @@ machine = TocMachine(
 			'conditions': 'is_go_back_to_user'
         },
 		{
+			'trigger': 'advance',
+			'source': 'show_times',
+			'dest': 'pre_look',
+			'conditions': 'look_for'
+		},
+		{
 			'trigger': 'go_back',
 			'source': [
-				'areas'
+				'areas',
+				'pre_look'
 			],
 			'dest': 'user'
 		}

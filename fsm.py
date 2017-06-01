@@ -9,6 +9,7 @@ origin_parse_addr = 'http://www.atmovies.com.tw/'
 current_parse_addr = ''
 current_movie_name = []
 current_movie_time = []
+current_movie = -1
 
 class TocMachine(GraphMachine):
 	def __init__(self, **machine_configs):
@@ -249,6 +250,7 @@ class TocMachine(GraphMachine):
 		return text.lower() == 'back'
 
 	def on_enter_user(self, update):
+		current_movie = -1
 		re_mess = '選擇戲院:\n'
 		for x in range(0,7):
 			re_mess = re_mess + str(x+1) + '. ' + thearter_name[x] + '\n'
@@ -256,6 +258,7 @@ class TocMachine(GraphMachine):
 		
 	def show_time_con(self, update):
 		if( (0 <= int(update.message.text)) and (len(current_movie_name) > int(update.message.text)) ):
+			current_movie = int(update.message.text)
 			return 1
 		else:
 			return 0
@@ -269,3 +272,11 @@ class TocMachine(GraphMachine):
 	
 	def on_exit_show_times(self, update):
 		print("Leave show_times")
+	
+	def look_for(self, update):
+		text = update.message.text
+		return text.lower() == 'look'
+		
+	def on_enter_pre_look(self, update):
+		update.message.reply_text('https://www.youtube.com/results?search_query=' + current_movie_name[current_movie] + '預告')
+		self.go_back()
