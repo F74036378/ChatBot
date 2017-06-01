@@ -9,7 +9,7 @@ origin_parse_addr = 'http://www.atmovies.com.tw/'
 current_parse_addr = ''
 current_movie_name = []
 current_movie_time = []
-current_movie = -1
+current_movie
 
 class TocMachine(GraphMachine):
 	def __init__(self, **machine_configs):
@@ -21,6 +21,7 @@ class TocMachine(GraphMachine):
 		r = requests.get('http://www.atmovies.com.tw/showtime/a06/')
 		content = r.content
 		soup = BeautifulSoup(content, 'html.parser')
+		current_movie = -1
 		
 		for opt in soup.findAll('option', value=re.compile(r'^/showtime/t0')):
 			thearter_num[area_num-1] = str(opt.get('value'))
@@ -250,7 +251,6 @@ class TocMachine(GraphMachine):
 		return text.lower() == 'back'
 
 	def on_enter_user(self, update):
-		current_movie = -1
 		re_mess = '選擇戲院:\n'
 		for x in range(0,7):
 			re_mess = re_mess + str(x+1) + '. ' + thearter_name[x] + '\n'
