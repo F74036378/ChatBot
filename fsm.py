@@ -279,4 +279,4 @@ class TocMachine(GraphMachine):
 		
 	def on_enter_pre_look(self, update):
 		update.message.reply_text('https://www.youtube.com/results?search_query=' + current_movie_name[current_movie] + '預告')
-		self.go_back()
+		self.go_back(update)
