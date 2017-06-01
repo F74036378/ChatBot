@@ -9,7 +9,7 @@ origin_parse_addr = 'http://www.atmovies.com.tw/'
 current_parse_addr = ''
 current_movie_name = []
 current_movie_time = []
-current_movie = []
+current_movie = -1
 
 class TocMachine(GraphMachine):
 	def __init__(self, **machine_configs):
@@ -256,9 +256,9 @@ class TocMachine(GraphMachine):
 		update.message.reply_text(re_mess)
 		
 	def show_time_con(self, update):
-		current_movie = []
+		global current_movie = -1
 		if( (0 <= int(update.message.text)) and (len(current_movie_name) > int(update.message.text)) ):
-			current_movie.append(int(update.message.text))
+			global current_movie = int(update.message.text)
 			return 1
 		else:
 			return 0
@@ -278,6 +278,6 @@ class TocMachine(GraphMachine):
 		return text.lower() == 'look'
 		
 	def on_enter_pre_look(self, update):
-		print(str(current_movie[0]) + ',' + current_movie_name[current_movie[0]])
-		update.message.reply_text('https://www.youtube.com/results?search_query=' + current_movie_name[current_movie[0]] + '預告')
+		tt = global current_movie
+		update.message.reply_text('https://www.youtube.com/results?search_query=' + current_movie_name[tt] + '預告')
 		self.go_back(update)
