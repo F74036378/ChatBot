@@ -114,7 +114,10 @@ machine = TocMachine(
         },
 		{
 			'trigger': 'go_back',
-			'source': 'areas',
+			'source': [
+				'areas',
+				'show_times'
+			],
 			'dest': 'user'
 		}
     ],
