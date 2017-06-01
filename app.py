@@ -107,7 +107,8 @@ machine = TocMachine(
 				'thearter_area6',
 				'thearter_area7',
 				'thearter_area8',
-				'areas'
+				'areas',
+				'show_times'
             ],
             'dest': 'user',
 			'conditions': 'is_go_back_to_user'
@@ -115,8 +116,7 @@ machine = TocMachine(
 		{
 			'trigger': 'go_back',
 			'source': [
-				'areas',
-				'show_times'
+				'areas'
 			],
 			'dest': 'user'
 		}

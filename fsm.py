@@ -234,7 +234,9 @@ class TocMachine(GraphMachine):
 
 	def on_enter_show_times(self, update):
 		nn = int(update.message.text)
-		print(update.message.text)
+		print(len(current_movie_time))
 		"""for x in range(0,len(current_movie_time[nn])):
 			print(current_movie_time[nn][x])"""
-		self.go_back(update)
+	
+	def on_exit_show_times(self, update):
+		print("Leave show_times")
