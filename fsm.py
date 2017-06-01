@@ -222,7 +222,7 @@ class TocMachine(GraphMachine):
 		update.message.reply_text(re_mess)
 		
 	def show_time_con(self, update):
-		if( (0 <= str(update.message.text)) && (len(current_movie_name) > str(update.message.text)) ):
+		if( (0 <= str(update.message.text)) and (len(current_movie_name) > str(update.message.text)) ):
 			return 1
 		else:
 			return 0
