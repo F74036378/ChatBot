@@ -68,7 +68,7 @@ class TocMachine(GraphMachine):
 		content = r.content
 		soup = BeautifulSoup(content, 'html.parser')
 		tmp = '\n'
-		name_num = 0;
+		name_num = 0
 
 		for ul in soup.findAll('ul', id='theaterShowtimeTable'):
 			for a in ul.find_all('a', href=re.compile('^/movie/')):
@@ -86,6 +86,7 @@ class TocMachine(GraphMachine):
 		content = r.content
 		soup = BeautifulSoup(content, 'html.parser')
 		tmp = '\n'
+		name_num = 0
 
 		for ul in soup.findAll('ul', id='theaterShowtimeTable'):
 			for a in ul.find_all('a', href=re.compile('^/movie/')):
@@ -103,6 +104,7 @@ class TocMachine(GraphMachine):
 		content = r.content
 		soup = BeautifulSoup(content, 'html.parser')
 		tmp = '\n'
+		name_num = 0
 
 		for ul in soup.findAll('ul', id='theaterShowtimeTable'):
 			for a in ul.find_all('a', href=re.compile('^/movie/')):
@@ -120,6 +122,7 @@ class TocMachine(GraphMachine):
 		content = r.content
 		soup = BeautifulSoup(content, 'html.parser')
 		tmp = '\n'
+		name_num = 0
 
 		for ul in soup.findAll('ul', id='theaterShowtimeTable'):
 			for a in ul.find_all('a', href=re.compile('^/movie/')):
@@ -137,6 +140,7 @@ class TocMachine(GraphMachine):
 		content = r.content
 		soup = BeautifulSoup(content, 'html.parser')
 		tmp = '\n'
+		name_num = 0
 
 		for ul in soup.findAll('ul', id='theaterShowtimeTable'):
 			for a in ul.find_all('a', href=re.compile('^/movie/')):
@@ -154,6 +158,7 @@ class TocMachine(GraphMachine):
 		content = r.content
 		soup = BeautifulSoup(content, 'html.parser')
 		tmp = '\n'
+		name_num = 0
 
 		for ul in soup.findAll('ul', id='theaterShowtimeTable'):
 			for a in ul.find_all('a', href=re.compile('^/movie/')):
@@ -171,6 +176,7 @@ class TocMachine(GraphMachine):
 		content = r.content
 		soup = BeautifulSoup(content, 'html.parser')
 		tmp = '\n'
+		name_num = 0
 
 		for ul in soup.findAll('ul', id='theaterShowtimeTable'):
 			for a in ul.find_all('a', href=re.compile('^/movie/')):
@@ -188,6 +194,7 @@ class TocMachine(GraphMachine):
 		content = r.content
 		soup = BeautifulSoup(content, 'html.parser')
 		tmp = '\n'
+		name_num = 0
 
 		for ul in soup.findAll('ul', id='theaterShowtimeTable'):
 			for a in ul.find_all('a', href=re.compile('^/movie/')):
