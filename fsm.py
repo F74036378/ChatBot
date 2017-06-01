@@ -256,9 +256,10 @@ class TocMachine(GraphMachine):
 		update.message.reply_text(re_mess)
 		
 	def show_time_con(self, update):
-		global current_movie = -1
+		global current_movie
+		current_movie = -1
 		if( (0 <= int(update.message.text)) and (len(current_movie_name) > int(update.message.text)) ):
-			global current_movie = int(update.message.text)
+			current_movie = int(update.message.text)
 			return 1
 		else:
 			return 0
