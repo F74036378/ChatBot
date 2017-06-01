@@ -23,6 +23,7 @@ machine = TocMachine(
 		'thearter_area6',
 		'thearter_area7',
 		'thearter_area8',
+		'show_times',
 		'areas'
     ],
     transitions=[
@@ -79,6 +80,21 @@ machine = TocMachine(
 			'source': 'user',
 			'dest': 'areas',
 			'conditions': 'show_thearter_areas'
+		},
+		{
+			'trigger': 'advance',
+			'source': [
+				'thearter_area1',
+				'thearter_area2',
+				'thearter_area3',
+				'thearter_area4',
+				'thearter_area5',
+				'thearter_area6',
+				'thearter_area7',
+				'thearter_area8'
+			],
+			'dest': 'show_times',
+			'conditions': 'show_time_con'
 		},
         {
             'trigger': 'advance',

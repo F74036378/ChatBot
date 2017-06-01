@@ -72,7 +72,7 @@ class TocMachine(GraphMachine):
 
 		for ul in soup.findAll('ul', id='theaterShowtimeTable'):
 			for a in ul.find_all('a', href=re.compile('^/movie/')):
-				tmp = tmp + str(name_num) + a.text + '\n'
+				tmp = tmp + str(name_num) + '. ' + a.text + '\n'
 				current_movie_name.append(a.text)
 				name_num = name_num + 1
 		update.message.reply_text('現在選擇' + thearter_name[0] + tmp)
@@ -90,7 +90,7 @@ class TocMachine(GraphMachine):
 
 		for ul in soup.findAll('ul', id='theaterShowtimeTable'):
 			for a in ul.find_all('a', href=re.compile('^/movie/')):
-				tmp = tmp + str(name_num) + a.text + '\n'
+				tmp = tmp + str(name_num) + '. '+ a.text + '\n'
 				current_movie_name.append(a.text)
 				name_num = name_num + 1
 		update.message.reply_text('現在選擇' + thearter_name[1] + tmp)
@@ -108,7 +108,7 @@ class TocMachine(GraphMachine):
 
 		for ul in soup.findAll('ul', id='theaterShowtimeTable'):
 			for a in ul.find_all('a', href=re.compile('^/movie/')):
-				tmp = tmp + str(name_num) + a.text + '\n'
+				tmp = tmp + str(name_num)+ '. ' + a.text + '\n'
 				current_movie_name.append(a.text)
 				name_num = name_num + 1
 		update.message.reply_text('現在選擇' + thearter_name[2] + tmp)
@@ -126,7 +126,7 @@ class TocMachine(GraphMachine):
 
 		for ul in soup.findAll('ul', id='theaterShowtimeTable'):
 			for a in ul.find_all('a', href=re.compile('^/movie/')):
-				tmp = tmp + str(name_num) + a.text + '\n'
+				tmp = tmp + str(name_num) + '. '+ a.text + '\n'
 				current_movie_name.append(a.text)
 				name_num = name_num + 1
 		update.message.reply_text('現在選擇' + thearter_name[3] + tmp)
@@ -144,7 +144,7 @@ class TocMachine(GraphMachine):
 
 		for ul in soup.findAll('ul', id='theaterShowtimeTable'):
 			for a in ul.find_all('a', href=re.compile('^/movie/')):
-				tmp = tmp + str(name_num) + a.text + '\n'
+				tmp = tmp + str(name_num) + '. '+ a.text + '\n'
 				current_movie_name.append(a.text)
 				name_num = name_num + 1
 		update.message.reply_text('現在選擇' + thearter_name[4] + tmp)
@@ -162,7 +162,7 @@ class TocMachine(GraphMachine):
 
 		for ul in soup.findAll('ul', id='theaterShowtimeTable'):
 			for a in ul.find_all('a', href=re.compile('^/movie/')):
-				tmp = tmp + str(name_num) + a.text + '\n'
+				tmp = tmp + str(name_num)+ '. ' + a.text + '\n'
 				current_movie_name.append(a.text)
 				name_num = name_num + 1
 		update.message.reply_text('現在選擇' + thearter_name[5] + tmp)
@@ -180,7 +180,7 @@ class TocMachine(GraphMachine):
 
 		for ul in soup.findAll('ul', id='theaterShowtimeTable'):
 			for a in ul.find_all('a', href=re.compile('^/movie/')):
-				tmp = tmp + str(name_num) + a.text + '\n'
+				tmp = tmp + str(name_num)+ '. ' + a.text + '\n'
 				current_movie_name.append(a.text)
 				name_num = name_num + 1
 		update.message.reply_text('現在選擇' + thearter_name[6] + tmp)
@@ -198,7 +198,7 @@ class TocMachine(GraphMachine):
 
 		for ul in soup.findAll('ul', id='theaterShowtimeTable'):
 			for a in ul.find_all('a', href=re.compile('^/movie/')):
-				tmp = tmp + str(name_num) + a.text + '\n'
+				tmp = tmp + str(name_num) + '. '+ a.text + '\n'
 				current_movie_name.append(a.text)
 				name_num = name_num + 1
 		update.message.reply_text('現在選擇' + thearter_name[7] + tmp)
@@ -220,3 +220,9 @@ class TocMachine(GraphMachine):
 		for x in range(0,7):
 			re_mess = re_mess + str(x+1) + '. ' + thearter_name[x] + '\n'
 		update.message.reply_text(re_mess)
+		
+	def show_time_con(self, update):
+		if( (0 <= str(update.message.text)) && (len(current_movie_name) > str(update.message.text)) ):
+			return 1
+		else:
+			return 0
