@@ -279,6 +279,7 @@ class TocMachine(GraphMachine):
 		return text.lower() == 'look'
 		
 	def on_enter_pre_look(self, update):
-		tt = global current_movie
+		global current_movie
+		tt = current_movie
 		update.message.reply_text('https://www.youtube.com/results?search_query=' + current_movie_name[tt] + '預告')
 		self.go_back(update)
