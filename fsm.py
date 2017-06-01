@@ -1,4 +1,4 @@
-from transitions import Machine
+from transitions.extensions import GraphMachine
 import requests
 from bs4 import BeautifulSoup
 import re
@@ -8,9 +8,9 @@ thearter_name = ['','','','','','','','']
 origin_parse_addr = 'http://www.atmovies.com.tw/'
 current_parse_addr = ''
 
-class TocMachine():
+class TocMachine(GraphMachine):
 	def __init__(self, **machine_configs):
-		self.machine = Machine(
+		self.machine = GraphMachine(
 			model = self,
 			**machine_configs
 		)
