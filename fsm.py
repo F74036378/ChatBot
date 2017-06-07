@@ -283,3 +283,17 @@ class TocMachine(GraphMachine):
 		tt = current_movie
 		update.message.reply_text('https://www.youtube.com/results?search_query=' + current_movie_name[tt] + '預告')
 		self.go_back(update)
+		
+	def wait_for_store(self, update):
+		text = update.message.text
+		return text.lower() == 'store'
+		
+	def on_enter_store(self, update):
+		update.message.reply_text('請留言:\n')
+		
+	def get_store(self, update):
+		text = update.message.text
+		return 1
+		
+	def on_exit_store(self, update):
+		update.message.reply_text(update.message.text)
